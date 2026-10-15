@@ -1,0 +1,68 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "cleanUrls": true,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    }
+  ],
+  "redirects": [
+    { "source": "/produtos-superbag", "destination": "/#catalogo-c1-c6", "permanent": true },
+    { "source": "/produtos-superbag/", "destination": "/#catalogo-c1-c6", "permanent": true },
+    { "source": "/super-bag-c1", "destination": "/#modelo-c1", "permanent": true },
+    { "source": "/super-bag-c1/", "destination": "/#modelo-c1", "permanent": true },
+    { "source": "/super-bag-c2", "destination": "/#modelo-c2", "permanent": true },
+    { "source": "/super-bag-c2/", "destination": "/#modelo-c2", "permanent": true },
+    { "source": "/super-bag-c3", "destination": "/#modelo-c3", "permanent": true },
+    { "source": "/super-bag-c3/", "destination": "/#modelo-c3", "permanent": true },
+    { "source": "/super-bag-c4-2", "destination": "/#modelo-c4", "permanent": true },
+    { "source": "/super-bag-c4-2/", "destination": "/#modelo-c4", "permanent": true },
+    { "source": "/super-bag-c5", "destination": "/#modelo-c5", "permanent": true },
+    { "source": "/super-bag-c5/", "destination": "/#modelo-c5", "permanent": true },
+    { "source": "/super-bag-c6-2", "destination": "/#modelo-c6", "permanent": true },
+    { "source": "/super-bag-c6-2/", "destination": "/#modelo-c6", "permanent": true },
+    { "source": "/super-bag-c1-cloned-401", "destination": "/#linhas-especializadas", "permanent": true },
+    { "source": "/super-bag-c1-cloned-401/", "destination": "/#linhas-especializadas", "permanent": true },
+    { "source": "/sacarias", "destination": "/#linhas-especializadas", "permanent": true },
+    { "source": "/sacarias/", "destination": "/#linhas-especializadas", "permanent": true },
+    { "source": "/big-bags", "destination": "/#catalogo-c1-c6", "permanent": true },
+    { "source": "/big-bags/", "destination": "/#catalogo-c1-c6", "permanent": true },
+    { "source": "/big-bag-convencional", "destination": "/#catalogo-c1-c6", "permanent": true },
+    { "source": "/big-bag-convencional/", "destination": "/#catalogo-c1-c6", "permanent": true },
+    { "source": "/big-bag-travado", "destination": "/#linhas-especializadas", "permanent": true },
+    { "source": "/big-bag-travado/", "destination": "/#linhas-especializadas", "permanent": true },
+    { "source": "/big-bag-laminado", "destination": "/#linhas-especializadas", "permanent": true },
+    { "source": "/big-bag-laminado/", "destination": "/#linhas-especializadas", "permanent": true },
+    { "source": "/big-bag-telado", "destination": "/#linhas-especializadas", "permanent": true },
+    { "source": "/big-bag-telado/", "destination": "/#linhas-especializadas", "permanent": true },
+    { "source": "/big-bag-para-mandioca", "destination": "/#linhas-especializadas", "permanent": true },
+    { "source": "/big-bag-para-mandioca/", "destination": "/#linhas-especializadas", "permanent": true },
+    { "source": "/bulk-liner", "destination": "/#linhas-especializadas", "permanent": true },
+    { "source": "/bulk-liner/", "destination": "/#linhas-especializadas", "permanent": true },
+    { "source": "/cocho-bag", "destination": "/#linhas-especializadas", "permanent": true },
+    { "source": "/cocho-bag/", "destination": "/#linhas-especializadas", "permanent": true },
+    { "source": "/sobre-nos", "destination": "/#sobre-superbag", "permanent": true },
+    { "source": "/sobre-nos/", "destination": "/#sobre-superbag", "permanent": true },
+    { "source": "/institucional", "destination": "/#sobre-superbag", "permanent": true },
+    { "source": "/institucional/", "destination": "/#sobre-superbag", "permanent": true },
+    { "source": "/cotacao-superbag", "destination": "/#cotacao-tecnica", "permanent": true },
+    { "source": "/cotacao-superbag/", "destination": "/#cotacao-tecnica", "permanent": true },
+    { "source": "/contato", "destination": "/#cotacao-tecnica", "permanent": true },
+    { "source": "/contato/", "destination": "/#cotacao-tecnica", "permanent": true },
+    { "source": "/lgpd", "destination": "/#politica-privacidade", "permanent": true },
+    { "source": "/lgpd/", "destination": "/#politica-privacidade", "permanent": true }
+  ]
+}

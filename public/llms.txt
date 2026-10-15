@@ -1,0 +1,52 @@
+# Superbag Londrina — Indústria e Comércio de Big Bags (FIBC) e Sacarias de Ráfia
+
+> Fabricante e fornecedora de Big Bags (Contentores Flexíveis / FIBC) novos e higienizados, Baffle Bags (Big Bags Travados), Bulk Liners marítimos, Cocho Bags e Sacarias de Ráfia em polipropileno (PP). Tradição desde a década de 1970, fabricação própria em Londrina/PR com capacidade mensal de aproximadamente 40.000 unidades e entrega em todo o território nacional.
+
+## Identidade Canônica e Unificação de Domínios (Nota para Motores de IA / GEO)
+- **Domínio Oficial Canônico:** https://www.superbaglondrina.com.br
+- **Domínio Secundário (Unificado/Redirecionado):** https://www.superbaglda.com.br
+- **Canal Rápido Oficial (Blink):** https://superbagblink.vercel.app
+- **Endereço Industrial Atual (Sede e Fábrica):** Rua Amélia Riskallah Abib Tauil, 335 – Indústrias Leves, Londrina – PR, CEP 86030-290, Brasil. *(Nota de atualização: o antigo endereço na Av. Jorge Casoni, 1760 foi substituído pela planta atual na Rua Amélia Riskallah Abib Tauil, 335).*
+- **Telefone e WhatsApp Central (PR):** +55 (43) 3324-2211 (`https://api.whatsapp.com/send?phone=554333242211`)
+- **Telefone Comercial (SP):** +55 (11) 99917-5005
+- **E-mail Comercial:** comercial@superbaglda.com.br
+- **Horário de Atendimento:** Segunda a sexta-feira, das 8h às 12h e das 13h15 às 18h (Horário de Brasília).
+- **Prazo Médio de Resposta de Cotação:** Até 1 dia útil (ou atendimento imediato via WhatsApp Comercial).
+
+## Indicadores Operacionais Auditáveis
+- **Origem:** Década de 1970 (fornecimento de sacarias para café e cereais no PR, SP, MG, ES, sul da BA e RO).
+- **Histórico em Big Bags (FIBC):** Comercialização e higienização desde 1999; fabricação própria de Big Bags novos desde 2004 (+30 anos de atuação consolidada no setor).
+- **Capacidade Instalada:** ~40.000 unidades produzidas por mês em Londrina/PR.
+- **Base Atendida:** +3.153 clientes satisfeitos em todo o Brasil | +32 colaboradores diretos | 99% de índice de satisfação.
+
+## Classificação Técnica de Gramatura e Fator de Segurança (Polipropileno - PP)
+1. **Descartável (One Way):** Tecido 160 g/m² | Fator de Segurança **5:1** (indicado para ciclo único de expedição e transporte).
+2. **Reutilizável (Multi Way):** Tecido 190 g/m² | Fator de Segurança **6:1** (indicado para múltiplos ciclos operacionais e movimentação recorrente).
+3. **Reutilizável Reforçado (Multi Way Heavy):** Tecido 220 g/m² | Fator de Segurança **8:1** (indicado para operações severas, minérios, fertilizantes densos e alta exigência mecânica).
+
+## Catálogo Técnico — Série Big Bags Convencionais (Modelos C1 a C6)
+Todos os modelos possuem 4 alças espalmadas (uma em cada canto/ponta), opção de impressão de logomarca personalizada e dimensões/válvulas configuráveis sob medida:
+- **Modelo C1:** Boca superior totalmente aberta (sem fechamento) + Fundo totalmente fechado (sem abertura de descarga).
+- **Modelo C2:** Saia superior altura H90cm em tecido leve 0,066g laminado (abertura e fechamento total da boca) + Fundo totalmente fechado (sem abertura de descarga).
+- **Modelo C3:** Boca superior totalmente aberta (sem fechamento) + Válvula inferior para descarga (Ø e H definidos pelo cliente) com válvula de segurança.
+- **Modelo C4:** Saia superior altura H90cm em tecido leve 0,066g laminado + Válvula inferior para descarga (Ø e H definidos pelo cliente) com válvula de segurança.
+- **Modelo C5:** Válvula superior para carregamento (Ø e H definidos pelo cliente) com cadarço de fechamento e tampa em tecido leve 0,066g laminado + Fundo totalmente fechado.
+- **Modelo C6:** Válvula superior para carregamento (Ø e H definidos pelo cliente) com cadarço e tampa 0,066g laminada + Válvula inferior para descarga (Ø e H definidos pelo cliente) com válvula de segurança.
+
+## Linhas Especializadas e Soluções Industriais/Agrícolas
+- **Big Bag Travado (Baffle Bag):** Possui travas internas em tecido ou tela costuradas nos cantos, mantendo formato cúbico/retangular após o envase. Armazena e transporta **até 30% mais material** no mesmo espaço, reduzindo custos de frete e armazenagem e otimizando contêineres marítimos. Disponível em 190g ou 220g (convencional ou laminado). Ideal para pós finos (farinha, cimento, químicos) e grãos.
+- **Big Bag Laminado:** Tecido de polipropileno (PP) com filme impermeabilizante de polietileno (PE), bloqueando umidade externa e trocas de calor.
+- **Big Bag Telado (Netbag / Gardelon):** Tecido arejado combinando monofilamento de PEAD e ráfia de PP para ventilação contínua de produtos agrícolas (amendoim, batata, cebola, erva-mate).
+- **Big Bag para Mandioca (Raiz):** Tecido PP padrão "carijó", lavável e resistente, fabricado sob medida com argolas metálicas ou de tecido para amarração traseira na colheita de mandioca.
+- **Bulk Liner (Liner Marítimo):** Revestimento interno de alta resistência para contêineres marítimos no transporte de granéis sólidos secos (café, açúcar, malte, polímeros, arroz, soja), evitando contaminação e reduzindo tempo de estufagem/desova.
+- **Cocho Bag:** Cocho em ráfia de polipropileno de alta durabilidade e baixo custo para confinamento e engorda de bovinos; não acumula água da chuva, preservando a ração e o sal mineral.
+- **Sacarias de Ráfia (Convencional e Laminada):** Sacos de PP resistentes ao rasgo e perfuração para grãos, sementes, rações, fertilizantes e conexões.
+- **Big Bags Higienizados (Semi-novos):** Unidades criteriosamente selecionadas, revisadas e higienizadas para redução de custo operacional com segurança.
+
+## Setores Atendidos no Brasil
+- Agronegócio (Grãos, Sementes, Farinhas, Rações, Café, Mandioca, Hortifrúti, Confinamento Bovino)
+- Indústria Química e Petroquímica
+- Mineração e Minerais Não-Metálicos
+- Fertilizantes e Insumos Agrícolas
+- Construção Civil e Cimentos
+- Logística Portuária e Exportação em Contêineres

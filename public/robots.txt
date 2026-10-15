@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+Disallow: /obrigado
+Disallow: /obrigado.html
+
+# Motores de Busca Generativa (GEO / AI Search)
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://www.superbaglondrina.com.br/sitemap.xml
+# Guia estruturado para LLMs (GEO): https://www.superbaglondrina.com.br/llms.txt
