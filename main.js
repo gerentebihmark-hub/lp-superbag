@@ -7,8 +7,7 @@ const WHATSAPP_NUMBER = '554333242211';
 document.addEventListener('DOMContentLoaded', () => {
   initHeaderScroll();
   initMobileNav();
-  initCatalogTabs();
-  initSpecToggles();
+  initPhoneMask();
   initProductSelection();
   initQuoteForm();
   initScrollReveal();
@@ -55,68 +54,33 @@ function initMobileNav() {
 }
 
 /**
- * 3. Product Category Tabs (Todos / Modelos C1 a C6 / Especiais & Sacarias)
+ * 3. Smooth Phone Mask (DD) 9XXXX-XXXX
  */
-function initCatalogTabs() {
-  const tabs = document.querySelectorAll('.tab-btn');
-  const cards = document.querySelectorAll('.prod-card');
-  if (!tabs.length || !cards.length) return;
-
-  tabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      const filter = tab.getAttribute('data-filter');
-
-      tabs.forEach((t) => {
-        t.classList.remove('active');
-        t.setAttribute('aria-selected', 'false');
-      });
-      tab.classList.add('active');
-      tab.setAttribute('aria-selected', 'true');
-
-      cards.forEach((card) => {
-        const category = card.getAttribute('data-category');
-        if (filter === 'all' || category === filter) {
-          card.classList.remove('hidden');
-        } else {
-          card.classList.add('hidden');
-        }
-      });
-    });
-  });
-}
-
-/**
- * 4. Toggle Photo <-> Technical Spec Drawing (C1 a C6)
- */
-function initSpecToggles() {
-  const toggles = document.querySelectorAll('.spec-toggle');
-  toggles.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const card = btn.closest('.prod-media');
-      const img = card?.querySelector('img');
-      if (!img) return;
-
-      const photoSrc = btn.getAttribute('data-photo');
-      const specSrc = btn.getAttribute('data-spec');
-      const isShowingSpec = btn.classList.toggle('active');
-
-      if (isShowingSpec && specSrc) {
-        img.src = specSrc;
-        btn.textContent = 'Ver foto';
-      } else if (photoSrc) {
-        img.src = photoSrc;
-        btn.textContent = 'Ver desenho';
+function initPhoneMask() {
+  const phoneInputs = document.querySelectorAll('input[type="tel"]');
+  phoneInputs.forEach((input) => {
+    input.addEventListener('input', (e) => {
+      let digits = e.target.value.replace(/\D/g, '').slice(0, 11);
+      if (digits.length > 6) {
+        const prefixLen = digits.length === 11 ? 7 : 6;
+        e.target.value = `(${digits.slice(0, 2)}) ${digits.slice(2, prefixLen)}-${digits.slice(prefixLen)}`;
+      } else if (digits.length > 2) {
+        e.target.value = `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
+      } else if (digits.length > 0) {
+        e.target.value = `(${digits}`;
+      } else {
+        e.target.value = '';
       }
     });
   });
 }
 
 /**
- * 5. Product Card CTA -> Pre-fill Lead Form or Open WhatsApp
+ * 4. Product Card CTA -> Pre-fill Lead Form & Smooth Scroll
  */
 function initProductSelection() {
   const buttons = document.querySelectorAll('[data-select-product]');
-  const productSelect = document.getElementById('lead-product');
+  const selects = document.querySelectorAll('#lead-product, #bottom-lead-product');
   const nameInput = document.getElementById('lead-name');
 
   buttons.forEach((btn) => {
@@ -124,8 +88,7 @@ function initProductSelection() {
       const chosenProduct = btn.getAttribute('data-select-product');
       if (!chosenProduct) return;
 
-      if (productSelect) {
-        // Ensure option exists or add dynamic option
+      selects.forEach((productSelect) => {
         let matched = false;
         Array.from(productSelect.options).forEach((opt) => {
           if (opt.value === chosenProduct) {
@@ -141,7 +104,7 @@ function initProductSelection() {
           productSelect.appendChild(customOpt);
           productSelect.value = chosenProduct;
         }
-      }
+      });
 
       const heroForm = document.getElementById('quote-form');
       if (heroForm) {
@@ -153,7 +116,7 @@ function initProductSelection() {
 }
 
 /**
- * 6. Lead Quote Forms (Hero & Bottom) -> Direct WhatsApp Dispatch
+ * 5. Lead Quote Forms (Hero & Bottom) -> Direct WhatsApp Dispatch
  */
 function initQuoteForm() {
   const forms = document.querySelectorAll('#quote-form, #bottom-quote-form');
@@ -185,7 +148,7 @@ function initQuoteForm() {
 }
 
 /**
- * 7. Scroll Reveal Observer
+ * 6. Scroll Reveal Observer
  */
 function initScrollReveal() {
   const elements = document.querySelectorAll('.reveal');
@@ -203,7 +166,7 @@ function initScrollReveal() {
         }
       });
     },
-    { threshold: 0.12 }
+    { threshold: 0.1 }
   );
 
   elements.forEach((el) => observer.observe(el));

@@ -1106,13 +1106,25 @@ h1, h2, h3, h4 {
    ========================================================================== */
 .reveal {
   opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 0.65s var(--ease-out), transform 0.65s var(--ease-out);
+  transform: translateY(18px);
+  will-change: opacity, transform;
+  transition: opacity 0.55s var(--ease-out), transform 0.55s var(--ease-out);
 }
 
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* ==========================================================================
