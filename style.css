@@ -1054,14 +1054,95 @@ h1, h2, h3, h4 {
 }
 
 /* ==========================================================================
-   LOCATION & CONTACT SECTION
+   STRATEGIC DARK LOCATION SECTION
    ========================================================================== */
-.location-section {
+.location-dark-section {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  overflow: hidden;
+}
+
+.location-dark-info {
+  position: relative;
+  z-index: 2;
+}
+
+.location-dark-info h2 {
+  color: #FFFFFF;
+  font-size: clamp(2rem, 3.4vw, 2.7rem);
+  margin-bottom: 16px;
+}
+
+.location-dark-info h2 span {
+  color: var(--brand);
+}
+
+.location-dark-lead {
+  color: var(--text-light-muted);
+  font-size: 1.04rem;
+  margin-bottom: 28px;
+}
+
+.dark-loc-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 32px;
+}
+
+.dark-loc-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 20px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-dark);
+}
+
+.dark-loc-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(243, 112, 33, 0.14);
+  border: 1px solid rgba(243, 112, 33, 0.3);
+  color: var(--brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.dark-loc-row strong {
+  display: block;
+  color: #FFFFFF;
+  font-size: 0.96rem;
+  margin-bottom: 3px;
+}
+
+.dark-loc-row span {
+  color: var(--text-light-muted);
+  font-size: 0.9rem;
+}
+
+.dark-map-frame {
+  position: relative;
+  z-index: 2;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ==========================================================================
+   BOTTOM CONTACT & SECOND QUOTE FORM SECTION
+   ========================================================================== */
+.bottom-contact-section {
   background: var(--bg-alt);
   border-top: 1px solid var(--border-subtle);
 }
 
 .location-layout {
+  position: relative;
+  z-index: 2;
   display: grid;
   grid-template-columns: 0.95fr 1.05fr;
   gap: 48px;
@@ -1128,6 +1209,11 @@ h1, h2, h3, h4 {
   box-shadow: var(--shadow-md);
   border: 1px solid var(--border-subtle);
   background: var(--bg-card);
+}
+
+.bottom-form-wrap .lead-card {
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-md);
 }
 
 /* ==========================================================================

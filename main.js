@@ -153,32 +153,34 @@ function initProductSelection() {
 }
 
 /**
- * 6. Lead Quote Form -> Direct WhatsApp Dispatch
+ * 6. Lead Quote Forms (Hero & Bottom) -> Direct WhatsApp Dispatch
  */
 function initQuoteForm() {
-  const form = document.getElementById('quote-form');
-  if (!form) return;
+  const forms = document.querySelectorAll('#quote-form, #bottom-quote-form');
+  if (!forms.length) return;
 
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
+  forms.forEach((form) => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
 
-    const name = document.getElementById('lead-name')?.value?.trim() || '';
-    const phone = document.getElementById('lead-phone')?.value?.trim() || '';
-    const product = document.getElementById('lead-product')?.value?.trim() || 'Big Bags / Sacarias';
-    const qty = document.getElementById('lead-qty')?.value?.trim() || 'A definir';
+      const name = form.querySelector('[name="name"]')?.value?.trim() || '';
+      const phone = form.querySelector('[name="phone"]')?.value?.trim() || '';
+      const product = form.querySelector('[name="product"]')?.value?.trim() || 'Big Bags / Sacarias';
+      const qty = form.querySelector('[name="qty"]')?.value?.trim() || 'A definir';
 
-    const message = [
-      'Olá, equipe comercial da *Superbag Londrina*!',
-      'Solicito uma cotação pelo site:',
-      '',
-      `• *Nome/Empresa:* ${name}`,
-      `• *WhatsApp:* ${phone}`,
-      `• *Produto de interesse:* ${product}`,
-      `• *Quantidade estimada:* ${qty}`
-    ].join('\n');
+      const message = [
+        'Olá, equipe comercial da *Superbag Londrina*!',
+        'Solicito uma cotação pelo site:',
+        '',
+        `• *Nome/Empresa:* ${name}`,
+        `• *WhatsApp:* ${phone}`,
+        `• *Produto de interesse:* ${product}`,
+        `• *Quantidade estimada:* ${qty}`
+      ].join('\n');
 
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank', 'noopener,noreferrer');
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank', 'noopener,noreferrer');
+    });
   });
 }
 
