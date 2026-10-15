@@ -1069,7 +1069,7 @@ h1, h2, h3, h4 {
 }
 
 .footer-bmk img {
-  height: 25px;
+  height: 29px;
   width: auto;
   opacity: 0.95;
 }
@@ -1079,16 +1079,21 @@ h1, h2, h3, h4 {
   right: 24px;
   bottom: 24px;
   z-index: 990;
-  width: 60px;
-  height: 60px;
+  width: 54px;
+  height: 54px;
   border-radius: 50%;
   background: #25D366;
   color: #FFFFFF;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 14px 30px rgba(37, 211, 102, 0.38);
+  box-shadow: 0 10px 24px rgba(37, 211, 102, 0.4);
   transition: transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
+}
+
+.whatsapp-float svg {
+  width: 32px;
+  height: 32px;
 }
 
 .whatsapp-float:hover {
