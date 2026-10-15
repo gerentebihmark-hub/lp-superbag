@@ -2,7 +2,7 @@
  * Superbag Londrina — Interações da Landing Page
  */
 
-const WHATSAPP_NUMBER = '5543999890236';
+const WHATSAPP_NUMBER = '554333242211';
 
 document.addEventListener('DOMContentLoaded', () => {
   initHeaderScroll();
