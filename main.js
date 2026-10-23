@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initPhoneMask();
   initProductSelection();
   initQuoteForm();
+  initOperationVideo();
   initScrollReveal();
 });
 
@@ -145,6 +146,92 @@ function initQuoteForm() {
       window.open(url, '_blank', 'noopener,noreferrer');
     });
   });
+}
+
+/**
+ * 6. Dedicated Operation Video Controls & Viewport Auto-Pause
+ */
+function initOperationVideo() {
+  const video = document.getElementById('superbag-operation-video');
+  const soundBtn = document.getElementById('video-sound-toggle');
+  const soundLabel = document.getElementById('video-sound-label');
+  const playBtn = document.getElementById('video-play-toggle');
+
+  if (!video || !soundBtn || !playBtn) return;
+
+  const syncPlayUI = () => {
+    const paused = video.paused;
+    playBtn.classList.toggle('is-paused', paused);
+    playBtn.setAttribute('aria-label', paused ? 'Reproduzir vídeo' : 'Pausar vídeo');
+  };
+
+  const syncSoundUI = () => {
+    const unmuted = !video.muted;
+    soundBtn.classList.toggle('is-unmuted', unmuted);
+    soundBtn.setAttribute('aria-pressed', String(unmuted));
+    soundBtn.setAttribute('aria-label', unmuted ? 'Silenciar áudio do vídeo' : 'Ativar áudio do vídeo');
+    if (soundLabel) {
+      soundLabel.textContent = unmuted ? 'Som ativo' : 'Ativar som';
+    }
+  };
+
+  const toggleSound = () => {
+    if (video.muted) {
+      video.muted = false;
+      video.currentTime = 0;
+      video.play().catch(() => {});
+    } else {
+      video.muted = true;
+    }
+    syncSoundUI();
+    syncPlayUI();
+  };
+
+  const togglePlay = () => {
+    if (video.paused) {
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+    syncPlayUI();
+  };
+
+  soundBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleSound();
+  });
+
+  playBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    togglePlay();
+  });
+
+  video.addEventListener('click', () => {
+    if (video.muted) {
+      toggleSound();
+    } else {
+      togglePlay();
+    }
+  });
+
+  video.addEventListener('play', syncPlayUI);
+  video.addEventListener('pause', syncPlayUI);
+
+  if ('IntersectionObserver' in window) {
+    const videoObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            video.play().catch(() => {});
+          } else if (!video.paused) {
+            video.pause();
+          }
+        });
+      },
+      { threshold: 0.25 }
+    );
+    videoObserver.observe(video);
+  }
 }
 
 /**

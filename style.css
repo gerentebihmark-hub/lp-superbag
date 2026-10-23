@@ -147,6 +147,7 @@ h1, h2, h3, h4 {
 }
 
 .section-header h2 span,
+.video-copy h2 span,
 .about-copy h2 span,
 .location-dark-info h2 span,
 .location-info h2 span {
@@ -704,6 +705,242 @@ h1, h2, h3, h4 {
 }
 
 /* ==========================================================================
+   DEDICATED VIDEO SECTION (OPERATIONAL SAFETY SHOWCASE)
+   ========================================================================== */
+.video-section {
+  background-color: var(--bg-page);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.video-layout {
+  display: grid;
+  grid-template-columns: 1.12fr 0.88fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.video-copy h2 {
+  font-size: clamp(2rem, 3.4vw, 2.7rem);
+  margin-bottom: 28px;
+  max-width: 580px;
+}
+
+.video-pillars {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 32px;
+}
+
+.video-pillar {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 20px;
+  background: #FFFFFF;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s var(--ease-out), border-color 0.25s var(--ease-out);
+}
+
+.video-pillar:hover {
+  transform: translateX(4px);
+  border-color: rgba(243, 112, 33, 0.35);
+}
+
+.video-pillar-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--brand-soft);
+  border: 1px solid rgba(243, 112, 33, 0.22);
+  color: var(--brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.video-pillar h3 {
+  font-size: 1.02rem;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+.video-pillar p {
+  font-size: 0.9rem;
+  color: var(--text-body);
+  line-height: 1.5;
+}
+
+.video-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.video-stage {
+  display: flex;
+  justify-content: center;
+}
+
+.video-stage-card {
+  width: 100%;
+  max-width: 392px;
+  background: var(--bg-dark);
+  border-radius: var(--radius-lg);
+  padding: 14px 14px 16px;
+  border: 1px solid rgba(24, 25, 28, 0.16);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+}
+
+.video-stage-card::before {
+  content: '';
+  position: absolute;
+  inset: -14px;
+  border-radius: 32px;
+  background: radial-gradient(circle at 50% 35%, rgba(243, 112, 33, 0.16), transparent 68%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.video-frame-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 8px 12px;
+}
+
+.video-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--brand);
+  box-shadow: 0 0 10px var(--brand);
+}
+
+.video-frame-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.86);
+  letter-spacing: 0.01em;
+  flex: 1;
+}
+
+.video-frame-tag {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--brand);
+  background: rgba(243, 112, 33, 0.14);
+  border: 1px solid rgba(243, 112, 33, 0.3);
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.video-player-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #0D0F12;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.operation-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  cursor: pointer;
+}
+
+.video-sound-toggle {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: rgba(19, 21, 25, 0.88);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #FFFFFF;
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  transition: background-color 0.2s var(--ease-out), border-color 0.2s var(--ease-out), transform 0.2s var(--ease-out);
+}
+
+.video-sound-toggle:hover {
+  background: var(--brand);
+  border-color: var(--brand);
+  transform: translateY(-2px);
+}
+
+.video-sound-toggle.is-unmuted {
+  background: var(--brand);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.video-sound-toggle .icon-unmuted {
+  display: none;
+}
+
+.video-sound-toggle.is-unmuted .icon-muted {
+  display: none;
+}
+
+.video-sound-toggle.is-unmuted .icon-unmuted {
+  display: block;
+}
+
+.video-play-toggle {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  z-index: 3;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(19, 21, 25, 0.84);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #FFFFFF;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  transition: background-color 0.2s var(--ease-out), border-color 0.2s var(--ease-out), transform 0.2s var(--ease-out);
+}
+
+.video-play-toggle:hover {
+  background: rgba(243, 112, 33, 0.92);
+  border-color: var(--brand);
+  transform: translateY(-2px);
+}
+
+.video-play-toggle .icon-play {
+  display: none;
+}
+
+.video-play-toggle.is-paused .icon-pause {
+  display: none;
+}
+
+.video-play-toggle.is-paused .icon-play {
+  display: block;
+}
+
+/* ==========================================================================
    ABOUT SECTION (SYMMETRICAL 2-COLUMN SPLIT)
    ========================================================================== */
 .about-section {
@@ -1133,6 +1370,7 @@ h1, h2, h3, h4 {
 @media (max-width: 1024px) {
   .hero-grid,
   .eng-layout,
+  .video-layout,
   .about-layout,
   .location-layout,
   .bottom-contact-layout {
