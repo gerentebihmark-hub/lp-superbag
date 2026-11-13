@@ -63,6 +63,10 @@
     { "source": "/contato", "destination": "/#cotacao-tecnica", "permanent": true },
     { "source": "/contato/", "destination": "/#cotacao-tecnica", "permanent": true },
     { "source": "/lgpd", "destination": "/#politica-privacidade", "permanent": true },
-    { "source": "/lgpd/", "destination": "/#politica-privacidade", "permanent": true }
+    { "source": "/lgpd/", "destination": "/#politica-privacidade", "permanent": true },
+    { "source": "/obrigada/", "destination": "/obrigada", "permanent": true },
+    { "source": "/obrigado", "destination": "/obrigada", "permanent": true },
+    { "source": "/obrigado/", "destination": "/obrigada", "permanent": true },
+    { "source": "/obrigado.html", "destination": "/obrigada", "permanent": true }
   ]
 }

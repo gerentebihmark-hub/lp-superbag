@@ -61,7 +61,11 @@ function initPhoneMask() {
   const phoneInputs = document.querySelectorAll('input[type="tel"]');
   phoneInputs.forEach((input) => {
     input.addEventListener('input', (e) => {
-      let digits = e.target.value.replace(/\D/g, '').slice(0, 11);
+      let digits = e.target.value.replace(/\D/g, '');
+      if (digits.length > 11 && digits.startsWith('55')) {
+        digits = digits.slice(2);
+      }
+      digits = digits.slice(0, 11);
       if (digits.length > 6) {
         const prefixLen = digits.length === 11 ? 7 : 6;
         e.target.value = `(${digits.slice(0, 2)}) ${digits.slice(2, prefixLen)}-${digits.slice(prefixLen)}`;
@@ -137,7 +141,7 @@ function setFormError(feedbackEl, message, includeFallback = false) {
 
   if (includeFallback) {
     const link = document.createElement('a');
-    link.href = `https://wa.me/${WHATSAPP_NUMBER}`;
+    link.href = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}`;
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
     link.textContent = 'falar direto no WhatsApp';
@@ -174,6 +178,11 @@ function initQuoteForm() {
     const submitLabel = submitBtn?.querySelector('span');
     const defaultBtnText = submitLabel?.textContent || 'Solicitar Orçamento';
     const feedbackEl = form.querySelector('.form-feedback');
+
+    window.addEventListener('pageshow', () => {
+      if (submitBtn) submitBtn.disabled = false;
+      if (submitLabel) submitLabel.textContent = defaultBtnText;
+    });
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -239,19 +248,24 @@ function initQuoteForm() {
           return;
         }
 
-        if (Array.isArray(window.dataLayer)) {
-          window.dataLayer.push({
-            event: 'form_submit',
-            form_id: sourceForm,
-            product,
-            lead_id: data.leadId || null,
-          });
-        }
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'form_submit',
+          form_id: sourceForm,
+          product,
+          lead_id: data.leadId || null,
+        });
 
         try {
           sessionStorage.setItem(
             'superbag_last_lead',
             JSON.stringify({
+              leadId: data.leadId || null,
+              name,
+              phone,
+              product,
+              qty,
+              source_form: sourceForm,
               waText: buildWhatsAppMessage(payload),
             })
           );
@@ -259,7 +273,7 @@ function initQuoteForm() {
           // Ignora indisponibilidade de sessionStorage em navegação privada restrita.
         }
 
-        window.location.assign('/obrigado.html');
+        window.location.assign('/obrigada');
       } catch {
         setFormError(
           feedbackEl,

@@ -260,8 +260,17 @@ def format_brt_timestamp(iso_ts: str) -> str:
 def render_email_bodies(lead: dict) -> tuple[str, str, str]:
     subject = clean_text(f"Nova cotação pelo site — {lead['name']} ({lead['product']})", 180)
     when_brt = format_brt_timestamp(lead["created_at"])
-    source_label = "Formulário Topo (Hero)" if lead["source_form"] == "hero" else "Formulário Rodapé (Contato)"
+    source_labels = {
+        "hero": "Formulário Topo (Hero)",
+        "bottom": "Formulário Rodapé (Contato)",
+    }
+    source_label = source_labels.get(
+        lead.get("source_form", ""),
+        f"Formulário ({lead.get('source_form') or 'lp'})",
+    )
     wa_link = build_wa_link(lead["phone"])
+    page_url = lead.get("page_url") or "Não informada"
+    referrer = lead.get("referrer") or "Acesso direto"
 
     utm_pairs = [
         (k, lead[k])
@@ -279,11 +288,12 @@ def render_email_bodies(lead: dict) -> tuple[str, str, str]:
         "",
         f"Nome / Empresa: {lead['name']}",
         f"WhatsApp / Telefone: {lead['phone']}",
-        *( [f"Abrir conversa no WhatsApp: {wa_link}"] if wa_link else [] ),
+        *([f"Abrir conversa no WhatsApp: {wa_link}"] if wa_link else []),
         f"Linha de Interesse: {lead['product']}",
         f"Quantidade Estimada: {lead['qty']}",
         "",
-        f"Página: {lead['page_url'] or 'Não informada'}",
+        f"Página de Origem: {page_url}",
+        f"Origem do Acesso (Referrer): {referrer}",
         f"UTMs: {utm_text}",
     ]
 
@@ -330,6 +340,14 @@ def render_email_bodies(lead: dict) -> tuple[str, str, str]:
           <tr>
             <td style="padding:10px 0;border-bottom:1px solid #EFECE4;font-size:13px;color:#71757F;font-weight:700;">Data e Hora</td>
             <td style="padding:10px 0;border-bottom:1px solid #EFECE4;font-size:13px;color:#4A4D55;">{esc(when_brt)}</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 0;border-bottom:1px solid #EFECE4;font-size:13px;color:#71757F;font-weight:700;">Página de Origem</td>
+            <td style="padding:10px 0;border-bottom:1px solid #EFECE4;font-size:12px;color:#71757F;word-break:break-all;">{esc(page_url)}</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 0;border-bottom:1px solid #EFECE4;font-size:13px;color:#71757F;font-weight:700;">Referrer</td>
+            <td style="padding:10px 0;border-bottom:1px solid #EFECE4;font-size:12px;color:#71757F;word-break:break-all;">{esc(referrer)}</td>
           </tr>
           <tr>
             <td style="padding:10px 0;font-size:13px;color:#71757F;font-weight:700;">Rastreio (UTMs)</td>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google Tag Manager -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-M8SSCBKD');
+  </script>
+  <!-- End Google Tag Manager -->
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WDDGDY6BDY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-WDDGDY6BDY');
+  </script>
+  <title>Solicitação Enviada | Superbag Londrina</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M8SSCBKD"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <header class="site-header scrolled">
+    <div class="container header-inner">
+      <a href="/" class="brand-logo" aria-label="Superbag Londrina">
+        <img src="/LOGO copiar 5.png" alt="Superbag Londrina" width="180" height="50" />
+      </a>
+      <a href="/" class="btn btn-primary btn-header">Voltar ao Início</a>
+    </div>
+  </header>
+
+  <main class="thankyou-section">
+    <div class="container">
+      <div class="thankyou-card text-center">
+        <div class="thankyou-check" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+
+        <span class="thankyou-badge" id="obrigada-protocol">Solicitação Confirmada</span>
+        <h1>Solicitação de orçamento recebida!</h1>
+        <p class="thankyou-lead">
+          Seus dados já foram encaminhados para nossa equipe comercial em Londrina/PR. Em breve retornaremos com a cotação ou, se preferir atendimento imediato, fale no WhatsApp abaixo:
+        </p>
+
+        <div class="thankyou-summary" id="obrigada-summary" hidden>
+          <h2>Resumo da Solicitação</h2>
+          <dl class="thankyou-dl">
+            <div>
+              <dt>Nome / Empresa</dt>
+              <dd id="obrigada-name">—</dd>
+            </div>
+            <div>
+              <dt>WhatsApp</dt>
+              <dd id="obrigada-phone">—</dd>
+            </div>
+            <div>
+              <dt>Produto</dt>
+              <dd id="obrigada-product">—</dd>
+            </div>
+            <div>
+              <dt>Quantidade</dt>
+              <dd id="obrigada-qty">—</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="thankyou-actions">
+          <a
+            id="obrigada-wpp-link"
+            href="https://api.whatsapp.com/send?phone=554333242211&text=Ol%C3%A1!%20Acabei%20de%20solicitar%20um%20or%C3%A7amento%20no%20site%20da%20Superbag%20Londrina."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primary btn-full btn-lg"
+          >
+            <span>Falar no WhatsApp Agora</span>
+          </a>
+          <a href="/" class="btn btn-outline btn-full">Voltar para a Página Inicial</a>
+        </div>
+
+        <p class="thankyou-meta">
+          Superbag Londrina · Rua Amélia Riskallah Abib Tauil, 335 · (43) 3324-2211 · Seg a Sex, 08h às 18h
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      try {
+        var raw = sessionStorage.getItem('superbag_last_lead');
+        if (!raw) return;
+        var data = JSON.parse(raw);
+        if (!data) return;
+
+        var setText = function (id, val) {
+          var el = document.getElementById(id);
+          if (el && val) el.textContent = val;
+        };
+
+        if (data.leadId) {
+          setText('obrigada-protocol', 'Protocolo #' + data.leadId);
+        }
+
+        if (data.name || data.phone || data.product) {
+          setText('obrigada-name', data.name || '—');
+          setText('obrigada-phone', data.phone || '—');
+          setText('obrigada-product', data.product || '—');
+          setText('obrigada-qty', data.qty || 'A definir');
+          var box = document.getElementById('obrigada-summary');
+          if (box) box.hidden = false;
+        }
+
+        if (data.waText) {
+          var link = document.getElementById('obrigada-wpp-link');
+          if (link) {
+            link.href = 'https://api.whatsapp.com/send?phone=554333242211&text=' + encodeURIComponent(data.waText);
+          }
+        }
+
+        var trackKey = 'superbag_lead_tracked_' + (data.leadId || 'latest');
+        if (!sessionStorage.getItem(trackKey)) {
+          sessionStorage.setItem(trackKey, '1');
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'generate_lead',
+            form_id: data.source_form || 'lp',
+            product: data.product || '',
+            lead_id: data.leadId || null
+          });
+          if (typeof window.gtag === 'function') {
+            window.gtag('event', 'generate_lead', {
+              event_category: 'lead',
+              event_label: data.product || '',
+              form_id: data.source_form || 'lp'
+            });
+          }
+        }
+      } catch (e) {}
+    })();
+  </script>
+</body>
+</html>
