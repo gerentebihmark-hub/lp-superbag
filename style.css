@@ -541,6 +541,8 @@ h1, h2, h3, h4 {
 }
 
 .prod-card {
+  position: relative;
+  cursor: pointer;
   background-color: #FFFFFF;
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
@@ -620,10 +622,6 @@ h1, h2, h3, h4 {
   width: 100%;
   padding-top: 14px;
   border-top: 1px solid #F1EFEA;
-  background: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: none;
   color: var(--brand);
   font-size: 0.9rem;
   font-weight: 700;
@@ -631,14 +629,23 @@ h1, h2, h3, h4 {
   transition: color 0.2s;
 }
 
+.prod-cta::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
 .prod-cta svg {
   transition: transform 0.25s var(--ease-out);
 }
 
+.prod-card:hover .prod-cta,
 .prod-cta:hover {
   color: var(--brand-hover);
 }
 
+.prod-card:hover .prod-cta svg,
 .prod-cta:hover svg {
   transform: translateX(4px);
 }

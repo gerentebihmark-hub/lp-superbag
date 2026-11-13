@@ -81,9 +81,21 @@ function initPhoneMask() {
 }
 
 /**
- * 4. Product Card CTA -> Pre-fill Lead Form & Smooth Scroll
+ * 4. Product Cards -> Direct WhatsApp · Operation CTA -> Form Pre-fill
  */
 function initProductSelection() {
+  const wppProductLinks = document.querySelectorAll('[data-whatsapp-product]');
+  wppProductLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      const product = link.getAttribute('data-whatsapp-product') || '';
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'whatsapp_product_click',
+        product,
+      });
+    });
+  });
+
   const buttons = document.querySelectorAll('[data-select-product]');
   const selects = document.querySelectorAll('#lead-product, #bottom-lead-product');
   const nameInput = document.getElementById('lead-name');
