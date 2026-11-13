@@ -444,6 +444,46 @@ h1, h2, h3, h4 {
   margin-top: 12px;
 }
 
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.form-feedback {
+  margin-bottom: 14px;
+  padding: 10px 13px;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  line-height: 1.45;
+  font-weight: 500;
+}
+
+.form-feedback[hidden] {
+  display: none;
+}
+
+.form-feedback.is-error {
+  background: #FEF2F2;
+  border: 1px solid #FECACA;
+  color: #991B1B;
+}
+
+.form-feedback.is-error a {
+  color: #991B1B;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.btn:disabled {
+  opacity: 0.72;
+  cursor: not-allowed;
+  transform: none;
+}
+
 /* ==========================================================================
    CREDENTIALS BAR (FULL-WIDTH BAND, NO OVERLAP)
    ========================================================================== */

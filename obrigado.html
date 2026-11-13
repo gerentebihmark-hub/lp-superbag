@@ -26,9 +26,10 @@
       <div class="lead-card text-center">
         <h1 style="font-size: 2rem; margin: 0 0 12px;">Solicitação recebida!</h1>
         <p style="margin-bottom: 28px;">
-          Para atendimento imediato com nossa equipe comercial em Londrina/PR, clique no botão abaixo para abrir a conversa no WhatsApp:
+          Sua solicitação foi enviada para nossa equipe comercial em Londrina/PR. Em breve retornaremos ou, se preferir atendimento imediato, fale no WhatsApp abaixo:
         </p>
         <a
+          id="obrigado-wpp-link"
           href="https://wa.me/554333242211?text=Ol%C3%A1!%20Acabei%20de%20solicitar%20um%20or%C3%A7amento%20no%20site%20da%20Superbag%20Londrina."
           target="_blank"
           rel="noopener noreferrer"
@@ -41,5 +42,22 @@
       </div>
     </div>
   </main>
+
+  <script>
+    (function () {
+      try {
+        var raw = sessionStorage.getItem('superbag_last_lead');
+        if (!raw) return;
+        sessionStorage.removeItem('superbag_last_lead');
+        var data = JSON.parse(raw);
+        if (data && data.waText) {
+          var link = document.getElementById('obrigado-wpp-link');
+          if (link) {
+            link.href = 'https://wa.me/554333242211?text=' + encodeURIComponent(data.waText);
+          }
+        }
+      } catch (e) {}
+    })();
+  </script>
 </body>
 </html>

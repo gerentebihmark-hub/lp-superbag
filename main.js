@@ -117,33 +117,158 @@ function initProductSelection() {
 }
 
 /**
- * 5. Lead Quote Forms (Hero & Bottom) -> Direct WhatsApp Dispatch
+ * 5. Lead Quote Forms (Hero & Bottom) -> Direct Backend Email Dispatch
  */
+function readUtmParams() {
+  const params = new URLSearchParams(window.location.search);
+  return {
+    utm_source: params.get('utm_source')?.trim() || '',
+    utm_medium: params.get('utm_medium')?.trim() || '',
+    utm_campaign: params.get('utm_campaign')?.trim() || '',
+    utm_content: params.get('utm_content')?.trim() || '',
+    utm_term: params.get('utm_term')?.trim() || '',
+  };
+}
+
+function setFormError(feedbackEl, message, includeFallback = false) {
+  if (!feedbackEl) return;
+  feedbackEl.className = 'form-feedback is-error';
+  feedbackEl.textContent = message;
+
+  if (includeFallback) {
+    const link = document.createElement('a');
+    link.href = `https://wa.me/${WHATSAPP_NUMBER}`;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.textContent = 'falar direto no WhatsApp';
+    feedbackEl.append(' Se preferir, tente ', link, '.');
+  }
+
+  feedbackEl.hidden = false;
+}
+
+function clearFormFeedback(feedbackEl) {
+  if (!feedbackEl) return;
+  feedbackEl.textContent = '';
+  feedbackEl.hidden = true;
+}
+
+function buildWhatsAppMessage(payload) {
+  return [
+    'Olá, equipe comercial da *Superbag Londrina*!',
+    'Acabei de enviar uma solicitação de cotação pelo site:',
+    '',
+    `• *Nome/Empresa:* ${payload.name}`,
+    `• *WhatsApp:* ${payload.phone}`,
+    `• *Produto de interesse:* ${payload.product}`,
+    `• *Quantidade estimada:* ${payload.qty}`,
+  ].join('\n');
+}
+
 function initQuoteForm() {
   const forms = document.querySelectorAll('#quote-form, #bottom-quote-form');
   if (!forms.length) return;
 
   forms.forEach((form) => {
-    form.addEventListener('submit', (e) => {
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const submitLabel = submitBtn?.querySelector('span');
+    const defaultBtnText = submitLabel?.textContent || 'Solicitar Orçamento';
+    const feedbackEl = form.querySelector('.form-feedback');
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      clearFormFeedback(feedbackEl);
 
       const name = form.querySelector('[name="name"]')?.value?.trim() || '';
       const phone = form.querySelector('[name="phone"]')?.value?.trim() || '';
-      const product = form.querySelector('[name="product"]')?.value?.trim() || 'Big Bags / Sacarias';
+      const product = form.querySelector('[name="product"]')?.value?.trim() || '';
       const qty = form.querySelector('[name="qty"]')?.value?.trim() || 'A definir';
+      const hp = form.querySelector('[name="website_url_hp"]')?.value || '';
 
-      const message = [
-        'Olá, equipe comercial da *Superbag Londrina*!',
-        'Solicito uma cotação pelo site:',
-        '',
-        `• *Nome/Empresa:* ${name}`,
-        `• *WhatsApp:* ${phone}`,
-        `• *Produto de interesse:* ${product}`,
-        `• *Quantidade estimada:* ${qty}`
-      ].join('\n');
+      if (name.length < 2) {
+        setFormError(feedbackEl, 'Informe seu nome ou empresa.');
+        form.querySelector('[name="name"]')?.focus();
+        return;
+      }
 
-      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-      window.open(url, '_blank', 'noopener,noreferrer');
+      const phoneDigits = phone.replace(/\D/g, '');
+      if (phoneDigits.length < 10) {
+        setFormError(feedbackEl, 'Informe um WhatsApp ou telefone válido com DDD.');
+        form.querySelector('[name="phone"]')?.focus();
+        return;
+      }
+
+      if (!product) {
+        setFormError(feedbackEl, 'Selecione a linha de produto de interesse.');
+        form.querySelector('[name="product"]')?.focus();
+        return;
+      }
+
+      const sourceForm = form.id === 'quote-form' ? 'hero' : 'bottom';
+      const payload = {
+        name,
+        phone,
+        product,
+        qty,
+        source_form: sourceForm,
+        website_url_hp: hp,
+        page_url: window.location.href,
+        referrer: document.referrer || '',
+        ...readUtmParams(),
+      };
+
+      if (submitBtn) submitBtn.disabled = true;
+      if (submitLabel) submitLabel.textContent = 'Enviando solicitação...';
+
+      try {
+        const res = await fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || !data.ok) {
+          setFormError(
+            feedbackEl,
+            data.error || 'Não foi possível enviar sua solicitação agora.',
+            res.status >= 500
+          );
+          if (submitBtn) submitBtn.disabled = false;
+          if (submitLabel) submitLabel.textContent = defaultBtnText;
+          return;
+        }
+
+        if (Array.isArray(window.dataLayer)) {
+          window.dataLayer.push({
+            event: 'form_submit',
+            form_id: sourceForm,
+            product,
+            lead_id: data.leadId || null,
+          });
+        }
+
+        try {
+          sessionStorage.setItem(
+            'superbag_last_lead',
+            JSON.stringify({
+              waText: buildWhatsAppMessage(payload),
+            })
+          );
+        } catch {
+          // Ignora indisponibilidade de sessionStorage em navegação privada restrita.
+        }
+
+        window.location.assign('/obrigado.html');
+      } catch {
+        setFormError(
+          feedbackEl,
+          'Falha de conexão ao enviar sua solicitação.',
+          true
+        );
+        if (submitBtn) submitBtn.disabled = false;
+        if (submitLabel) submitLabel.textContent = defaultBtnText;
+      }
     });
   });
 }

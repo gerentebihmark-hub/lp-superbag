@@ -49,3 +49,7 @@ Thumbs.db
 # Plataformas de Deploy
 .vercel
 .netlify
+
+# Python
+__pycache__/
+*.py[cod]
